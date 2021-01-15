@@ -11,7 +11,9 @@ console.log(module);
 
 
 
-/*
+/* 
+   Notes:
+   
    console.log(); //global object
    setTimeout();
    clearTimeout();

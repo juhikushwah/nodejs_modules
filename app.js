@@ -14,7 +14,15 @@ logger.log('example');       //we can call this function in app.js
 
 //logger('example1');
 
+const path = require('path');  //node assumes this is a built-in module. If there is no built-in module by the name specified here,
+                               //node looks for the existence of a relative path '../../path' to a file in this application.
 
+var pathObj = path.parse(__filename);
+
+console.log(pathObj);  //NOTE: it's easier to work with path modules than with strings.
+
+const memod = require('./memod.js');
+console.log(memod);
 /*
    console.log(); //global object
    setTimeout();
@@ -50,4 +58,10 @@ logger.log('example');       //we can call this function in app.js
     -if we use const, while logger = 1; is still defined, we will get another error-'Assignment to constant variable'
     -benefit of using constant over variable: if you accidentally reset an object(logger, both as a module and as 1), you'll get an error
        at compile time instead of run time.
+
+   The path module provides utilities for working with file and directory paths. It can be accessed using:
+      const path = require('path');  //we get an object(path) and store it in const. This object also has useful methods.
+   (In the above case, we are loading the building module and storing it in a constant).
+
+   Look for nodejs documentation for certain methods.
 */ 

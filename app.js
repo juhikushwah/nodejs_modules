@@ -12,7 +12,7 @@ console.log(logger);            //on cmd, we'll get an object which has a single
                        
 logger.log('example');       //we can call this function in app.js
 
-//logger('example1');
+//logger('example1');       //logger-experimenting with 'require' and 'exports'
 
 const path = require('path');  //node assumes this is a built-in module. If there is no built-in module by the name specified here,
                                //node looks for the existence of a relative path '../../path' to a file in this application.
@@ -21,8 +21,12 @@ var pathObj = path.parse(__filename);
 
 console.log(pathObj);  //NOTE: it's easier to work with path modules than with strings.
 
-const memod = require('./memod.js');
+const memod = require('./memod.js');   //files and directories
 console.log(memod);
+
+const eventfunc = require('./events.js');  //events
+console.log(eventfunc); 
+
 /*
    console.log(); //global object
    setTimeout();

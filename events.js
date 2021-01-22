@@ -66,4 +66,13 @@ module.exports.func2 = EventEmitter;
 
   This is the final registered event which you see above.
 
+  In the real world, working with EventEmitter object directly is rare!! Instead, you want to create a class that has all
+  the capabilities of the event emitter and then you will use that class in your code.
+  SEE THE LOGGER MODULE(In the logger module, you want to raise an event(after displaying the message), then later in 
+  app module, we will listen for that event and  do something).
+
+  Changes I made:
+    -Whatever stuff I mentioned in this module. I will be copying that in the app.js module, and from there I will listen
+     for that event. 
+
  */

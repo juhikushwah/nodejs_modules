@@ -65,6 +65,35 @@ const eventfunc = require('./events.js');  //events
 console.log(eventfunc); 
 
 
+
+//*************HTTP Module*****************/
+
+const http = require('http');  //loading http module
+
+//const server = http.createServer(); //creating a web server and storing it in 'server' object. This server is also an event emitter.
+
+//Registering an event before listening below
+/* server.on('connection', (socket) => {
+   console.log('New connection...');
+}) */
+
+const server = http.createServer(/* function */(req,res) => {
+   if(req.url === '/'){
+      res.write('Hello World');
+      res.end();    //ending the response
+   }
+
+   if(req.url === '/api/courses'){
+      res.write(JSON.stringify([1, 2, 3]))  //for simplicity, we are using 1,2,3. Don't have to worry about database or complex objects
+      res.end();
+   }
+})
+server.listen(3000);
+
+console.log('Listening on port 3000...'); //the server will run on port 3000 when you run this application
+//(While running, comment out line 13)
+
+
 /*
    console.log(); //global object
    setTimeout();
@@ -123,4 +152,25 @@ console.log(eventfunc);
       (const logger1 = new Logger();), that extends EventEmitter.
 
    NOTE: Comment out appropriate lines of code for running this application.
+
+   The 'server' object in http module is an event emitter, so it has all the methods of event emitter like add, listen, emit, etc.
+   -Every time there is a new connection(like listening on 3000) or a new request, the server raises an event, so we use
+    'on' method to handle that event.
+   -Thus, before listening, we will register a listener or a handler.
+   -In real world applications, we are not going to respond to the connection event to build an http service. This is very
+    low level.
+   -So, comment out the server.on method for now! And pass a callback function to the createServer method.
+   -Now, in this function, instead of working with a socket, we can work with the actual request or response objects, hence
+    we can check if req.url==='/', then we can send something to the client. You will see 'Hello World' in browser.
+
+   If you want to build a back-end service for our web or mobile application, we need to handle various routes here!
+   Eg. if req.url==='/api/courses', we want to return the list of courses from the database, so we would do something
+   like this: return an array of objects(using JSON.stringify). Here, passing the numbers 1,2,3 to json.stringify which
+   will convert this array into a string using json syntax, and then we will write it to the response. 
+
+   As mentioned previously, in the real world, we are not going to build a back-end service using HTTP module, because, as 
+   we add more routes(like /api/courses), this code gets more complex because we add all of them in a linear way inside the
+   above callback function. So instead, we use a framework called Express, which gives our application  a clean structure to
+   handle various routes. Internally Express framework is built on top of the HTTP module in node.
+
 */ 

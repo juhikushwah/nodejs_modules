@@ -15,4 +15,19 @@ var users = (a,b) => {
 
 users(4,5);
 
+//code for running addition.js module content
+var cal = require('./addition');
+cal.addition();
+console.log(cal.addition()); //the string abc is being returned unlike the above string!
+console.log(cal.aval);
+
 module.exports.abc=name;
+
+/******************************************************************************/
+
+//module
+
+//addition | this function will be called from the addition.js file
+//subtraction
+//multiplication
+//division
